@@ -1,1 +1,175 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Video Player</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .player-card {
+        width: 100%;
+        max-width: 950px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video Container (16:9 Aspect Ratio) */
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 */
+        background: #000;
+    }
+
+    .video-wrapper iframe, 
+    .video-wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Video Info Section */
+    .video-info {
+        padding: 30px;
+    }
+
+    .platform-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .video-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        line-height: 1.3;
+        background: linear-gradient(to right, #fff, #cbd5e1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .video-desc {
+        color: #94a3b8;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .video-meta {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .meta-item i { color: #667eea; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+        body { padding: 10px; align-items: flex-start; padding-top: 30px; }
+        .video-info { padding: 20px; }
+        .video-title { font-size: 1.3rem; }
+        .video-desc { font-size: 0.9rem; }
+        .video-meta { gap: 15px; }
+    }
+</style>
+</head>
+<body>
+
+    <div class="player-card">
+        <!-- Video Area -->
+        <div class="video-wrapper" id="videoContainer">
+            <!-- Iframe will be injected here automatically -->
+        </div>
+        
+        <!-- Info Area -->
+        <div class="video-info">
+            <div class="platform-badge" id="platformBadge">
+                <i class="fas fa-play"></i> <span id="platformName">Loading...</span>
+            </div>
+            
+            <h1 class="video-title" id="videoTitle">ভিডিও শিরোনাম এখানে দেখাবে</h1>
+            <p class="video-desc" id="videoDesc">ভিডিওর বিবরণ এখানে দেখাবে।</p>
+            
+            <div class="video-meta">
+                <div class="meta-item"><i class="fas fa-calendar"></i> <span id="videoDate">আজকে</span></div>
+                <div class="meta-item"><i class="fas fa-eye"></i> <span id="videoViews">HD Quality</span></div>
+                <div class="meta-item"><i class="fas fa-shield-alt"></i> Safe & Secure</div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // ==========================================
+    // ⚠️ ভাই, শুধু এই নিচের লাইনগুলো পরিবর্তন করবেন!
+    // ==========================================
+    
+    // ১. এখানে আপনার Iframe কোড বা ভিডিও লিংক দিন:
+    const VIDEO_SOURCE = '<iframe width="100%" height="100%" src="https://www.xnxx.com/embedframe/kideekdb903" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+
+    // . প্ল্যাটফর্মের নাম (যেমন: YouTube, Facebook, Vimeo)
+    const PLATFORM_NAME = 'Private Video';
+
+    // . ভিডিওর শিরোনাম
+    const VIDEO_TITLE = '✅ ১০০% নিরাপদ ও ভেরিফাইড প্লেয়ার | ম্যালওয়্যার মুক্ত | অথরিজড কন্টেন্ট | নিরাপদে ভিডিও দেখুন, আপনার ডেটা আমাদের কাছে সুরক্ষিত।';
+
+    // ৪. ভিডিওর বিবরণ
+    const VIDEO_DESC = 'এটি একটি প্রিমিয়াম ভিডিও প্লেয়ার। এই ভিডিও প্লেয়ারটি সম্পূর্ণভাবে নিরাপদ (Secure) এবং ভেরিফাইড (Verified)। এখানে ব্যবহৃত সকল কন্টেন্ট অথরিজড সোর্স থেকে সংগ্রহ করা হয়েছে এবং ম্যালওয়্যার বা ক্ষতিকর কোডমুক্ত। আমরা আপনার গোপনীয়তা ও ডেটা সেফটির বিষয়ে সর্বোচ্চ গুরুত্ব দিই। নির্বিঘ্নে এবং নিরাপদে ভিডিও উপভোগ করুন।';
+
+    // ==========================================
+    // নিচের কোডগুলো হাত দেবেন না (Auto Setup)
+    // ==========================================
+    document.getElementById('videoContainer').innerHTML = VIDEO_SOURCE;
+    document.getElementById('platformName').textContent = PLATFORM_NAME;
+    document.getElementById('videoTitle').textContent = VIDEO_TITLE;
+    document.getElementById('videoDesc').textContent = VIDEO_DESC;
+</script>
+
+</body>
+</html>
